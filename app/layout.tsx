@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ClientLayout } from './client-layout';
 
 export const metadata: Metadata = {
   title: 'Hanteo global',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-dvw h-dvh">{children}</body>
+      <body className="w-dvw h-dvh">
+        <ClientLayout>{children}</ClientLayout>
+      </body>
     </html>
   );
 }

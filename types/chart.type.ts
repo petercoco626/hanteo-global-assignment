@@ -8,3 +8,9 @@ export interface ChartCard {
   company: string;
   view: number;
 }
+
+export interface FetchTop100ChartResponse {
+  results: ChartCard[];
+  hasNextPage: boolean;
+  page: number;
+}

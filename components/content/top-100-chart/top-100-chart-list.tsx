@@ -1,8 +1,26 @@
-import { MOCK_CHARTS } from '@/constants/chart';
 import { ChartCard } from './chart-card';
+import { useRef } from 'react';
+import { useInfiniteScroll } from '@/hooks/use-infinite-scroll';
+import { useTop100Chart } from './use-top-100-chart';
+import clsx from 'clsx';
 
-// TODO: Mock 데이터이긴 하지만 무한 스크롤 서비스 느낌을 내기 위해 mock-api를 만들어보자.
 export function Top100ChartList() {
+  const boundaryRef = useRef<HTMLDivElement>(null);
+
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useTop100Chart();
+
+  useInfiniteScroll({
+    boundaryRef,
+    loadMore: () => {
+      if (hasNextPage) {
+        if (!isFetchingNextPage) {
+          fetchNextPage();
+        }
+      }
+    },
+  });
+
   return (
     <div className="w-full min-w-full h-full">
       <div className="space-y-1 mb-4">
@@ -12,9 +30,22 @@ export function Top100ChartList() {
         </p>
       </div>
       <div className="w-full h-[calc(100%-38px)] overflow-y-scroll space-y-2 scrollbar-none">
-        {MOCK_CHARTS.map((chart) => (
-          <ChartCard key={chart.id} chartCard={chart} />
-        ))}
+        {data?.pages.map((page) =>
+          page.results.map((chart) => (
+            <ChartCard key={chart.id} chartCard={chart} />
+          ))
+        )}
+        <div ref={boundaryRef} className="w-full h-px pb-4" />
+        {isFetchingNextPage && (
+          <div
+            className={clsx(
+              'w-full flex justify-center',
+              'text-xl font-normal'
+            )}
+          >
+            Loading...
+          </div>
+        )}
       </div>
     </div>
   );
