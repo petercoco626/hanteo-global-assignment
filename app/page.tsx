@@ -1,4 +1,4 @@
-import { BannerList } from '@/components/banner-list';
+import { BannerList } from '@/components/banner/banner-list';
 import { Content } from '@/components/content';
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
