@@ -1,17 +1,22 @@
 'use client';
 
+import { NavbarOptions } from '@/constants/navbar';
+import {
+  NavbarOption,
+  useNavbarActions,
+  useNavbarStore,
+} from '@/stores/navbar.store';
 import clsx from 'clsx';
-import { useState } from 'react';
-
-type Navbar = 'chart' | 'whook' | 'event' | 'news' | 'store' | 'charger';
 
 export function Navbar() {
-  // TODO : contents와 연동을 위해 zustand로 연동해야함.
-  const [selectedNavbarOption, setSelectedNavbarOption] =
-    useState<Navbar>('chart');
+  const currentNavbarOption = useNavbarStore(
+    (state) => state.currentNavbarOption
+  );
 
-  const handleNavbarOptionClick = (navbarOption: Navbar) => {
-    setSelectedNavbarOption(navbarOption);
+  const { setNavbarOption } = useNavbarActions();
+
+  const handleNavbarOptionClick = (navbarOption: NavbarOption) => {
+    setNavbarOption(navbarOption);
     // TODO : 선택한 navbar에 따라 위치 조정 animation이 필요할것 같음.
   };
 
@@ -22,15 +27,13 @@ export function Navbar() {
         'flex gap-8 overflow-x-hidden'
       )}
     >
-      {navbarOptions.map((option) => (
+      {NavbarOptions.map((option) => (
         <button
           type="button"
           key={option.type}
           className={clsx(
             'text-nowrap',
-            selectedNavbarOption === option.type
-              ? 'text-white'
-              : 'text-gray-900'
+            currentNavbarOption === option.type ? 'text-white' : 'text-gray-900'
           )}
           onClick={() => handleNavbarOptionClick(option.type)}
         >
@@ -40,33 +43,3 @@ export function Navbar() {
     </nav>
   );
 }
-
-const navbarOptions: {
-  title: string;
-  type: Navbar;
-}[] = [
-  {
-    title: '차트',
-    type: 'chart',
-  },
-  {
-    title: 'Whook',
-    type: 'whook',
-  },
-  {
-    title: '이벤트',
-    type: 'event',
-  },
-  {
-    title: '뉴스',
-    type: 'news',
-  },
-  {
-    title: '스토어',
-    type: 'store',
-  },
-  {
-    title: '충전소',
-    type: 'charger',
-  },
-];
