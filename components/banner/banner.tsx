@@ -4,9 +4,17 @@ import ImgWinner from '@/assets/images/winner-icon-image.png';
 import clsx from 'clsx';
 
 export function Banner({ banner }: { banner: Banner }) {
+  const handleBannerButtonClick = () => {
+    window.open(banner.url);
+  };
+
   return (
     <li className="min-w-[calc(100%-20px)] rounded-lg shadow-md">
-      <button type="button" className="w-full h-full ">
+      <button
+        type="button"
+        className="w-full h-full"
+        onClick={handleBannerButtonClick}
+      >
         <BannerImage banner={banner} />
         <BannerInfo banner={banner} />
       </button>

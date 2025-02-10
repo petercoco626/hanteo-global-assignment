@@ -17,7 +17,7 @@ export const MOCK_BANNERS: Banner[] = [
     },
     status: 'ongoing',
     winner: null,
-    url: '',
+    url: 'https://www.hanteochart.com/',
   },
   {
     id: '2',
@@ -29,7 +29,7 @@ export const MOCK_BANNERS: Banner[] = [
     },
     status: 'ongoing',
     winner: '필릭스',
-    url: '',
+    url: 'https://hanteonews.com/',
   },
   {
     id: '3',
@@ -41,7 +41,7 @@ export const MOCK_BANNERS: Banner[] = [
     },
     status: 'ongoing',
     winner: null,
-    url: '',
+    url: 'https://www.hanteochart.com/',
   },
   {
     id: '4',
@@ -53,7 +53,7 @@ export const MOCK_BANNERS: Banner[] = [
     },
     status: 'ongoing',
     winner: 'A-yo',
-    url: '',
+    url: 'https://hanteonews.com/',
   },
   {
     id: '5',
@@ -65,6 +65,6 @@ export const MOCK_BANNERS: Banner[] = [
     },
     status: 'ongoing',
     winner: null,
-    url: '',
+    url: 'https://www.hanteochart.com/',
   },
 ];
