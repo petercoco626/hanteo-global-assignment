@@ -17,3 +17,7 @@
 $ pnpm install
 $ pnpm dev
 ```
+
+## 3. 배포 url
+
+- https://hanteo-global-assignment-gilt.vercel.app/
