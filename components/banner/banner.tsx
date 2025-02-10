@@ -9,16 +9,14 @@ export function Banner({ banner }: { banner: Banner }) {
   };
 
   return (
-    <li className="min-w-[calc(100%-20px)] rounded-lg shadow-md">
-      <button
-        type="button"
-        className="w-full h-full"
-        onClick={handleBannerButtonClick}
-      >
-        <BannerImage banner={banner} />
-        <BannerInfo banner={banner} />
-      </button>
-    </li>
+    <button
+      type="button"
+      className="w-[calc(100%-20px)] rounded-lg shadow-md"
+      onClick={handleBannerButtonClick}
+    >
+      <BannerImage banner={banner} />
+      <BannerInfo banner={banner} />
+    </button>
   );
 }
 
