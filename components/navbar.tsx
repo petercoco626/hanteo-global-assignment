@@ -17,14 +17,13 @@ export function Navbar() {
 
   const handleNavbarOptionClick = (navbarOption: NavbarOption) => {
     setNavbarOption(navbarOption);
-    // TODO : 선택한 navbar에 따라 위치 조정 animation이 필요할것 같음.
   };
 
   return (
     <nav
       className={clsx(
-        'w-full h-10 bg-pink-300 py-1 px-10',
-        'flex gap-8 overflow-x-hidden'
+        'w-full h-10 bg-pink-300 py-1 px-8',
+        'flex justify-between overflow-x-scroll scrollbar-none'
       )}
     >
       {NavbarOptions.map((option) => (
