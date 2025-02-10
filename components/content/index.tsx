@@ -1,16 +1,12 @@
 'use client';
 
-// TODO :
-// zustand로 현재 navbar의 선택된 option의 상태공유 필요.
-// 해당 영역의 좌우 슬라이드 터치시 content + navbar가 자동 이동되야한다.
-
 import clsx from 'clsx';
 import { Top100ChartList } from './top-100-chart/top-100-chart-list';
 import { useNavbarStore } from '@/stores/navbar.store';
 import { NavbarOptions } from '@/constants/navbar';
 import { BlankContent } from './blank-content';
+import { useTouchScroll } from './use-touch-scroll';
 
-// TODO : 좌우 터치 스크롤에 대한 애니메이션 구현도 필요함.
 export function Content() {
   const currentNavbarOption = useNavbarStore(
     (state) => state.currentNavbarOption
@@ -20,15 +16,25 @@ export function Content() {
     (option) => option.type === currentNavbarOption
   );
 
+  const { sliderRef, sliderWrapperRef, onDragEnd, onDragStart } =
+    useTouchScroll();
+
   return (
     <section
+      ref={sliderWrapperRef}
       className={clsx(
         'w-full h-[calc(100%-400px)] bg-gray-100',
         'px-4 py-6',
         'overflow-x-hidden'
       )}
+      onMouseDown={onDragStart}
+      onMouseUp={onDragEnd}
+      onMouseLeave={onDragEnd}
+      onTouchStart={onDragStart}
+      onTouchEnd={onDragEnd}
     >
       <div
+        ref={sliderRef}
         className={clsx(
           'w-full h-full flex gap-4 transition-transform duration-300'
         )}
